@@ -1,0 +1,242 @@
+{
+  "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+	{
+      "path": "pages/selections/index",
+	  "style": {
+	    "navigationBarTitleText": "",
+	    "navigationStyle": "custom"
+	  }
+      // "style": {
+      //   "navigationBarTitleText": "选品库",
+      //   "navigationBarBackgroundColor": "#fb5144",
+      //   "navigationBarTextStyle": "white"
+      // }
+    },
+	{
+      "path": "pages/mine/mine",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+	{
+      "path": "pages/talent/talent",
+      "style": {
+        "navigationBarTitleText": "达人库",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/allowance/allowance",
+      "style": {
+        "navigationBarTitleText": "赢鲸贴",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/main/main",
+      "style": {
+        "navigationBarTitleText": "鲸大大",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/goods/goods_video_info",
+      "style": {
+        "navigationBarTitleText": "商品视频",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/verify/phone",
+      "style": {
+        "navigationBarTitleText": "手机验证",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/verify/userinfo",
+      "style": {
+        "navigationBarTitleText": "身份选择",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/shop/shop_info",
+      "style": {
+        "navigationBarTitleText": "店铺主页",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/goods/goods_card",
+      "style": {
+        "navigationBarTitleText": "直播手卡"
+      }
+    },
+    {
+      "path": "pages/goods/goods",
+      "style": {
+        "navigationBarTitleText": "商品详情",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/selections/goods",
+      "style": {
+        "navigationBarTitleText": "商家主页",
+        "navigationBarBackgroundColor": "#fb5144",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/mine/mymaster",
+      "style": {
+        "navigationBarTitleText": "我的达人",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/mine/createmaster",
+      "style": {
+        "navigationBarTitleText": "创建达人",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/cooperation/cooperation",
+      "style": {
+        "navigationBarTitleText": "商家合作",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/shop/shop",
+      "style": {
+        "navigationBarTitleText": "商家列表",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/allowance/allowance_info",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/mine/mine_info",
+      "style": {
+        "navigationBarTitleText": "个人资料",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/mine/mine_sample",
+      "style": {
+        "navigationBarTitleText": "我的样品",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/shop/shop_video",
+      "style": {
+        "navigationBarTitleText": "店铺视频列表",
+        "navigationBarBackgroundColor": "#6f86b3",
+        "navigationBarTextStyle": "white"
+      }
+
+    },
+	{
+		"path" : "pages/selections/goods_list",
+		"style": {
+		  "navigationBarTitleText": "选品库",
+		  "navigationBarBackgroundColor": "#fb5144",
+		  "navigationBarTextStyle": "white"
+		}
+    }
+        ,{
+            "path" : "pages/verify/xieyi",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "用户协议和信息发布规则",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "鲸大大",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#dbdbdb",
+    "selectedColor": "#547BB3",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+		{
+		  "pagePath": "pages/index/index",
+		  "iconPath": "static/icon/tarbar/shop.png",
+		  "selectedIconPath": "static/icon/tarbar/shop_tag.png",
+		  "text": "商家库"
+		},
+      {
+        "pagePath": "pages/selections/index",
+        "iconPath": "static/icon/tarbar/goods.png",
+        "selectedIconPath": "static/icon/tarbar/goods_tag.png",
+        "text": "选品库"
+      },
+      {
+        "pagePath": "pages/talent/talent",
+        "iconPath": "static/icon/tarbar/daren.png",
+        "selectedIconPath": "static/icon/tarbar/daren_tag.png",
+        "text": "达人库"
+      },
+      {
+        "pagePath": "pages/allowance/allowance",
+        "iconPath": "static/icon/tarbar/allowance.png",
+        "selectedIconPath": "static/icon/tarbar/allowance_tag.png",
+        "text": "赢鲸贴"
+      }, {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "static/icon/tarbar/mine.png",
+        "selectedIconPath": "static/icon/tarbar/mine_tag.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "condition": { //模式配置，仅开发期间生效
+    "current": 0, //当前激活的模式(list 的索引项)
+    "list": [{
+      "name": "", //模式名称
+      "path": "", //启动页面，必选
+      "query": "" //启动参数，在页面的onLoad函数里面得到
+    }]
+  }
+}
