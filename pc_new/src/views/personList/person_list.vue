@@ -97,7 +97,7 @@
 							<template slot-scope="scope">
 								<el-button v-if="user" icon="el-icon-s-promotion" circle
 									@click="handleEdit(scope.$index, scope.row)"></el-button>
-								<span v-else style="margin-left: 10px">请先登录</span>
+								<span v-else style="margin-left: 10px;color:blue">请先登录</span>
 							</template>
 						</el-table-column>
 					</el-table>
@@ -151,7 +151,7 @@
 						</el-table-column>
 						<el-table-column label="平均播放量">
 							<template slot-scope="scope">
-								<span style="margin-left: 10px;font-weight: 600;">{{ scope.row.line_time }}</span>
+								<span style="margin-left: 10px;font-weight: 600;">{{ scope.row.line_time }}W</span>
 							</template>
 						</el-table-column>
 						<el-table-column label="30日直播销售额" width="120">
@@ -172,7 +172,7 @@
 							<template slot-scope="scope">
 								<el-button v-if="user" icon="el-icon-s-promotion" circle
 									@click="handleEdit(scope.$index, scope.row)"></el-button>
-								<span v-else style="margin-left: 10px">请先登录</span>
+								<span v-else style="margin-left: 10px; color:blue">请先登录</span>
 							</template>
 						</el-table-column>
 					</el-table>
