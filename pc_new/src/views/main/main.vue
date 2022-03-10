@@ -21,7 +21,7 @@
           </el-col>
         </el-row>
       </div>
-      <div class="item" style="margin-top: 100px">
+      <div class="item" style="margin-top: 80px">
         <el-row>
           <el-col :span="12">
             <div>
@@ -34,7 +34,7 @@
             </div>
           </el-col>
         </el-row>
-        <el-row style="margin-top: 80px">
+        <el-row style="margin-top: 50px;transform:scale(1.1)">
           <el-col :span="12" style="margin-top: 20px">
             <el-row>
               <el-col :span="13" class="border_r border_b title3_bg">
@@ -125,7 +125,7 @@
           <div v-for="item2 in item.list" :key="item2.uid">
             <div>鲸大大 {{ item2.name }}</div>
             <div>{{ item2.title }}</div>
-            <div @click="gorouter(item2.url)">
+            <div @click="gorouter(item2.url,item2.id)" style="marginTop:60px">
               <div></div>
               <div>立即查看</div>
               <div></div>
@@ -183,6 +183,7 @@ export default {
               title:
                 "提供抖音达人，机构直接建联途径，助力商家搭建达人矩阵为商家智能匹配最适合店铺产品的优质达人。",
               url: "/person_list",
+              id:3
             },
             {
               uid: 1,
@@ -233,8 +234,9 @@ export default {
     handleClose(done) {
       done();
     },
-    gorouter(url) {
+    gorouter(url,id) {
       this.$router.push(url);
+      this.$emit('event',id)
       document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
   },
@@ -359,6 +361,9 @@ export default {
 .title3_bg {
   background-color: #547bb3;
   height: 100px;
+  :hover{
+    animation: text-shadow-pop-tl 0.6s both;;
+  }
 }
 .title3 {
   color: #fff;
@@ -374,5 +379,17 @@ export default {
   color: #000;
   padding-left: 10px;
   padding-top: 10px;
+}
+@keyframes text-shadow-pop-tl {
+  0% {
+    text-shadow: 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555;
+    -webkit-transform: translateX(0) translateY(0);
+            transform: translateX(0) translateY(0);
+  }
+  100% {
+    text-shadow: -1px -1px #555555, -2px -2px #555555, -3px -3px #555555, -4px -4px #555555, -5px -5px #555555, -6px -6px #555555, -7px -7px #555555, -8px -8px #555555;
+    -webkit-transform: translateX(8px) translateY(8px);
+            transform: translateX(8px) translateY(8px);
+  }
 }
 </style>

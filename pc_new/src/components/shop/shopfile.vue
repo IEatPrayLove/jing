@@ -124,7 +124,8 @@
 					}
 
 					>.isSlect {
-						border-bottom: 2px solid #b4bfd3;
+						border-bottom: 2px solid orange;
+						transition: all .3s;
 					}
 				}
 

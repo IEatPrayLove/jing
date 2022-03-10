@@ -1,8 +1,8 @@
 <template>
 	
   <div id="app">
-    <Header />
-    <router-view></router-view>
+    <Header :path="index" />
+    <router-view @event="changePath"></router-view>
     <Footer />
   </div>
 </template>
@@ -16,8 +16,15 @@ export default {
     Footer,
   },
   data() {
-    return {};
+    return {
+      index: 0
+    };
   },
+  methods:{
+    changePath:(value)=>{
+      this.index = value
+    }
+  }
 };
 </script>
 

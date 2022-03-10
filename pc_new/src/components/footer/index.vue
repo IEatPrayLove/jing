@@ -2,12 +2,12 @@
   <el-footer>
     <div class="footer-div">
       <el-row class="index_footrt">
-        <el-col :span="4">
+        <!-- <el-col :span="4">
           <div class="grid-content bg-purple footer_logos">
             <img src="@/assets/home/logo.png"
                  class="footer_logo" />
           </div>
-        </el-col>
+        </el-col> -->
         <el-col :span="4">
           <div class="item grid-content bg-purple-light footer_content">
             <div>关于我们</div>

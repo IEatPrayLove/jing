@@ -94,9 +94,10 @@
 					}
 
 					>.isSlect {
-						border-bottom: 2px solid #b4bfd3;
+						border-bottom: 2px solid orange;
 						font-weight: 600;
 						font-size: 16px;
+						transition: all .3s;
 					}
 				}
 

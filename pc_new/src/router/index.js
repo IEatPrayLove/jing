@@ -27,10 +27,10 @@ import mytalent from "@/views/admin/mytalent/index.vue";
 //带货助手
 import cargo_assistant from "../views/cargoAssistant/index.vue";
 
-import manager_shop_list from "../views/managers/shop_list.vue"
-import manager_goods_list from "../views/managers/goods_list.vue"
-import mannger_shop_edit from "../views/managers/shop/shop.vue"
-import mannger_goods_edit from "../views/managers/goods/goods.vue"
+import manager_shop_list from "../views/managers/shop_list.vue";
+import manager_goods_list from "../views/managers/goods_list.vue";
+import mannger_shop_edit from "../views/managers/shop/shop.vue";
+import mannger_goods_edit from "../views/managers/goods/goods.vue";
 
 Vue.use(VueRouter);
 
@@ -48,18 +48,18 @@ const routes = [
       {
         path: "/userinfo",
         name: "userinfo",
-        component: user_info, 
+        component: user_info,
       },
       {
         path: "/vippage",
         name: "vippage",
         component: vippage,
       },
-	  {
-	    path: "/vippay",
-	    name: "vippay",
-	    component: vippay,
-	  },
+      {
+        path: "/vippay",
+        name: "vippay",
+        component: vippay,
+      },
       {
         path: "/person_list",
         name: "person_list",
@@ -75,18 +75,18 @@ const routes = [
         name: "jingtie",
         component: jingtie,
       },
-      
+
       //选品库
       {
         path: "/selection",
         name: "selection",
         component: selection,
       },
-	{
-	  path: "/user",
-	  name: "user",
-	  component: user,
-	},
+      {
+        path: "/user",
+        name: "user",
+        component: user,
+      },
       {
         path: "/shop",
         name: "shop",
@@ -143,7 +143,7 @@ const routes = [
       {
         path: "/alliance",
         name: "alliance",
-        component:alliance,
+        component: alliance,
         meta: "建联活动",
       },
       {
@@ -155,7 +155,7 @@ const routes = [
       {
         path: "/mytalent",
         name: "mytalent",
-        component:mytalent,
+        component: mytalent,
         meta: "我的达人",
       },
       {
@@ -202,9 +202,9 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
-  scrollBehavior(to,from,savedPosition){
-    return {x:0,y:0}
-  }
+  scrollBehavior(to, from, savedPosition) {
+    return { x: 0, y: 0 };
+  },
 });
 
 export default router;
