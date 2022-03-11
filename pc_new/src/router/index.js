@@ -41,7 +41,7 @@ const routes = [
     component: index,
     children: [
       {
-        path: "/main",
+        path: "/",
         name: "main",
         component: main,
       },

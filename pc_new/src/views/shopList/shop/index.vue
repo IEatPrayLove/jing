@@ -33,8 +33,11 @@
 						<div>实时在线，欢迎洽谈</div>
 						<div>
 							<div class="hongxin"></div>
-							<div @click="LookShopWechat(info.id)" class="weixin"><i></i>微信</div>
-							<div @click="LookShopInfo(info.id)" class="phone"><i></i>电话直联</div>
+							<div @click="LookShopWechat(info.id)" class="weixin">
+								<i></i>
+								<span>微信</span>
+								</div>
+							<div @click="LookShopInfo(info.id)" class="phone"><i></i><span>电话直联</span></div>
 						</div>
 					</div>
 				</h-card>
@@ -353,31 +356,49 @@
 				height: 28px;
 			}
 			.weixin{
-				position: relative;
-				padding-left: 10px;
+				// position: relative;
+				// padding-left: 10px;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				border-radius: 8px;
+				color: #fff;
+				font-weight: normal;
 				i{
-					position: absolute;
-					left: 10px;
-					top: 50%;
-					transform: translate3d(0,-50%,0);
+					// position: absolute;
+					// left: 10px;
+					// top: 50%;
+					// transform: translate3d(0,-50%,0);
 					display: block;
-					background-image: url(../../../assets/wechat-icon.png);
+					background-image: url('../../../assets/wechat-icon.png');
 					background-repeat: no-repeat;
-					background-size: contain;
-					background-position: center;
+					background-size: 20px 20px;
+					background-position: 100% 100%;
 					width: 20px;
 					height: 20px;
+				}
+				span{
+					margin-left: 10px;
 				}
 			}
 			
 			.phone{
-				position: relative;
-				padding-left: 10px;
+				// position: relative;
+				// padding-left: 10px;
+					display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				border-radius: 8px;
+				color: #fff;
+				font-weight: normal;
+				margin-left: 5px;
 				i{
-					position: absolute;
-					left: 10px;
-					top: 50%;
-					transform: translate3d(0,-50%,0);
+					// position: absolute;
+					// left: 10px;
+					// top: 50%;
+					// transform: translate3d(0,-50%,0);
 					display: block;
 					background-image: url(../../../assets/phone-icon.png);
 					background-repeat: no-repeat;

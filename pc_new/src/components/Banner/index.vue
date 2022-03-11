@@ -1,7 +1,7 @@
 <template>
   <div class="top-banner">
     <div class="banner-title">
-      <div>百万纯佣内容电商达人，选品领样平台</div>
+      <div>十万纯佣内容电商达人，选品领样平台</div>
       <div>鲸大大——B2M2C</div>
     </div>
     <div class="banner-list">

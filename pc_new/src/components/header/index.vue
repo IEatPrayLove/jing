@@ -283,7 +283,7 @@ export default {
       menus: [
         {
           title: "首页",
-          router: "/main",
+          router: "/",
           id: 0,
         },
         {
@@ -388,7 +388,7 @@ export default {
             }
           });
 
-          this.$router.push("/main");
+          this.$router.push("/");
         } else {
           this.$message.error("登陆失败，请联系管理员~");
         }
@@ -397,7 +397,7 @@ export default {
       if (this.$route.path != "/") {
         this.jump(this.$route.path);
       } else {
-        this.jump("/main");
+        this.jump("/");
       }
       let that = this;
       if (
@@ -425,6 +425,18 @@ export default {
         });
         that.user = JSON.parse(localStorage.getItem("user"));
       }
+    }
+  },
+  watch:{
+    $route:{
+      handler:function(v){
+        this.menus.map(item=>{
+          if(item.router === v.path){
+            this.nowPath = item.id
+          }
+        })
+      },
+      deep:true
     }
   },
   methods: {

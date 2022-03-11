@@ -116,6 +116,9 @@
           <img src="@/assets/home/4.png" style="width: 100%" />
         </div>
       </div>
+      <div class="home_new_banner">
+        666
+      </div>
       <div class="item-router" v-for="item in routerList" :key="item.id">
         <div>
           <div>{{ item.name }}</div>
@@ -379,6 +382,11 @@ export default {
   color: #000;
   padding-left: 10px;
   padding-top: 10px;
+}
+.home_new_banner{
+  height: 500px;
+  background-color: aqua;
+  opacity: .3;
 }
 @keyframes text-shadow-pop-tl {
   0% {
