@@ -10,6 +10,7 @@ import VueClipboard from "vue-clipboard2";
 // swiper
 import VueAwesomeSwiper from "vue-awesome-swiper";
 import "swiper/css/swiper.css"; // 引入css 文件
+import "swiper/js/swiper"
 Vue.use(VueAwesomeSwiper);
 Vue.use(VueClipboard)
 Vue.config.productionTip = false;

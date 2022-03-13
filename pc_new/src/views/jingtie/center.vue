@@ -69,7 +69,7 @@
         </div>
         <div class="footer">
           <div class="title">
-            参与要求:达人带货口碑分4.5以上/信用分6以上<span style="color: red"
+            <span style="color: red"
               >(此活动仅限短视频带货达人参与)</span
             >
           </div>
@@ -115,7 +115,7 @@
           </div>
         </div>
         <div class="box-center">
-          <div class="top-right">平台规则</div>
+          <!-- <div class="top-right">平台规则</div> -->
           <el-tabs
             value="first"
             @tab-click="handleClick"
@@ -126,6 +126,9 @@
             }}</el-tab-pane>
             <el-tab-pane label="任务解析" name="fourth">{{
               item.desc
+            }}</el-tab-pane>
+            <el-tab-pane label="平台规则" name="three">{{
+              item.platform_rules
             }}</el-tab-pane>
           </el-tabs>
         </div>

@@ -297,11 +297,12 @@
           </el-row>
           <el-row  style="marginTop:60px" type="flex" justify="center">
             <div class="platform_custom_mir">
+              
               <img src="../../assets/home/weapp.png" alt="">
               <p>小程序</p>
               <img class="home_weapp" src="../../assets/home/weapp.png" alt="">
+              <!-- </div> -->
             </div>
-            
           </el-row>
           <el-row type="flex" justify="center" style="marginTop:40px;fontSize:24px">
             <el-col :span="8" :offset="4">
@@ -317,9 +318,16 @@
               <span>位实力商家</span>
             </el-col>
           </el-row>
-          <el-row>
-
-          </el-row>
+          <swiper class="top_w" :options="initData3">
+              <swiper-slide class="top_w_item" v-for="item in topShop" :key="item.id + item.name">
+                  <div class="top_shop_container">
+                    <img class="top_img" :src="item.logo" alt="">
+                    <div class="top_name">
+                      {{item.name}}
+                    </div>
+                  </div>
+              </swiper-slide>
+            </swiper>
         </div>
       </div>
        <div class="item-router" v-for="item in routerList" :key="item.id">
@@ -344,6 +352,14 @@
           <img src="@/assets/home/3.png" style="width: 100%" />
         </div>
       </div> -->
+      <el-row type="flex" justify="center" style="marginTop:60px;">
+        <el-col style="textAlign:center;"><h1 style="color:red">实例品牌商户</h1></el-col>
+      </el-row>
+      <!-- <el-row>
+          <el-col> -->
+            
+          <!-- </el-col>
+      </el-row> -->
       <el-dialog
         title=""
         :visible.sync="centerDialogVisible"
@@ -359,11 +375,71 @@
         </div>
       </el-dialog>
     </div>
+      <!-- <div class="con">
+        <div
+          v-for="item in log1"
+          :key="item"
+          class="con_item"
+          
+        >
+        <img :src="require(`../../assets/home/log${item}.jpeg`)" alt="">
+        </div>
+        
   </div>
+   <div class="con">
+        <div
+          v-for="item in log2"
+          :key="item"
+          class="con_item"
+        >
+        <img :src="require(`../../assets/home/log${item}.jpeg`)" alt="">
+        </div>
+        
+  </div>
+   <div class="con">
+        <div
+          v-for="item in log3"
+          :key="item"
+          class="con_item"
+        >
+        <img :src="require(`../../assets/home/log${item}.jpeg`)" alt="">
+        </div>
+        
+  </div> -->
+  <swiper :options="initData" class="con">
+    
+    <swiper-slide class="con_item"  v-for="item in log1" :key="item">
+      
+        <img :src="require(`../../assets/home/log${item}.jpeg`)" alt="">
+        
+    </swiper-slide>
+    
+  </swiper>
+  <swiper :options="initData2" class="con">
+    
+    <swiper-slide class="con_item"  v-for="item in log2" :key="item">
+      
+        <img :src="require(`../../assets/home/log${item}.jpeg`)" alt="">
+        
+    </swiper-slide>
+    
+  </swiper>
+  <swiper :options="initData" class="con">
+    
+    <swiper-slide class="con_item"  v-for="item in log3" :key="item">
+      
+        <img :src="require(`../../assets/home/log${item}.jpeg`)" alt="">
+        
+    </swiper-slide>
+    
+  </swiper>
+  </div>
+  
 </template>
 <script>
 import Banner from "@/components/Banner/index.vue";
 import 'animate.css';
+import Swiper from 'swiper'
 export default {
   components: { Banner },
   data() {
@@ -421,7 +497,47 @@ export default {
       ],
       platformCustom:{},
       bangdanList:{},
-      curBangdan:1
+      curBangdan:1,
+      log1:[],
+      log2:[],
+      log3:[],
+      topShop:{},
+      initData:{
+        loop: true,
+        observer:true,
+        observeParents:true,
+        // loopedSlides: 5,
+        slidesPerView: 'auto',
+        autoplay:{
+          delay:1000,
+          disableOnInteraction: false,
+          reverseDirection:false
+        }
+      },
+      initData2:{
+        loop: true,
+        observer:true,
+        observeParents:true,
+        // loopedSlides: 5,
+        slidesPerView: 'auto',
+        autoplay:{
+          delay:1000,
+          disableOnInteraction: false,
+          reverseDirection:true
+        }
+      },
+       initData3:{
+        loop: true,
+        observer:true,
+        observeParents:true,
+        // loopedSlides: 5,
+        slidesPerView: 'auto',
+        autoplay:{
+          delay:1000,
+          disableOnInteraction: false,
+          reverseDirection:false
+        }
+      }
     };
   },
   mounted() {
@@ -436,6 +552,17 @@ export default {
         this.home_new_banner_show = false
       }
     })
+    let arr1  = []
+    let arr2  = []
+    let arr3  = []
+    Array(20).fill(1).map((item,index)=>{
+      arr1.push(index+1)
+      arr2.push(index+21)
+      arr3.push(index+41)
+    })
+    this.log1 = arr1
+    this.log2 = arr2
+    this.log3 = arr3
     this.$axios({
       url: "Plblics/customIndex",
       method: "get",
@@ -448,8 +575,26 @@ export default {
     });
     this.getHomeCustom()
     this.getBangdan(1)
+    this.getTopShop()
+    // setInterval(()=>{
+    //   this.changp(arr1)
+    //   this.changm(arr3)
+    //   this.changpt(arr2)
+    // },1000)
   },
   methods: {
+    changp(arr){
+      var a = arr.splice(0,1)
+      this.log1.push(a)
+    },
+     changm(arr){
+      var a = arr.splice(0,1)
+      this.log3.push(a)
+    },
+    changpt(arr){
+      var a = arr.splice(-1,1)
+      this.log2.unshift(a)
+    },
     handleClose(done) {
       done();
     },
@@ -465,6 +610,18 @@ export default {
       }).then((res)=>{
         if (res.data.status == 0) {
         this.platformCustom = res.data.result;
+      } else {
+        this.$message.error(res.data.msg);
+      }
+      })
+    },
+    getTopShop(){
+      this.$axios({
+        url:'/Plblics/TopShop',
+        method:'get'
+      }).then(res=>{
+         if (res.data.status == 0) {
+        this.topShop = res.data.result;
       } else {
         this.$message.error(res.data.msg);
       }
@@ -582,6 +739,28 @@ export default {
       transform: translate3d(-50%,0,0) scale(1);
     }
   }
+}
+.top_w{
+  width:1200px
+}
+.top_w_item{
+  width: 200px;
+}
+.top_shop_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  width: 200px;
+}
+.top_img{
+  width: 180px;
+  height: 200px;
+}
+.top_name{
+  font-weight: 600;
+  color: #233;
+  margin-top: 20px;
 }
 .platform_custom_mir{
   display: flex;
@@ -950,6 +1129,35 @@ export default {
     text-align: center;
   }
 }
+.con{
+  width: 100%;
+  height:150px;
+  display: flex;
+  overflow: hidden;
+  margin-top: 20px;
+  // position: relative;
+  img{
+    height: 150px;
+    width: 150px;
+  }
+}
+.con_item{
+  transition: all .3s ease-in-out;
+   width: 150px;
+  height:150px;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  &:not(:nth-child(1)){
+    margin-left: 20px;
+  }
+  &:hover{
+    transform: scale(1.2);
+    box-shadow: -1px -1px 2px 2px orange;
+  }
+}
+
+
 @keyframes text-shadow-pop-tl {
   0% {
     text-shadow: 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555;

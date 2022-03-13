@@ -11,27 +11,28 @@
         <el-col :span="4">
           <div class="item grid-content bg-purple-light footer_content">
             <div>关于我们</div>
-            <div>投诉建议</div>
-            <div>使用协议</div>
-            <div>免责声明</div>
-            <div>信息发布规则</div>
+            <div class="gray">投诉建议</div>
+            <div class="gray">使用协议</div>
+            <div class="gray">免责声明</div>
+            <div class="gray">信息发布规则</div>
           </div>
         </el-col>
         <el-col :span="4">
           <div class="item grid-content bg-purple-light footer_content">
             <div>产品服务</div>
-            <div>会员中心</div>
-            <div>带货助手</div>
-            <div>鲸贴活动</div>
-            <div>商家工作台</div>
+            <div class="gray">会员中心</div>
+            <div class="gray">带货助手</div>
+            <div class="gray">鲸贴活动</div>
+            <div class="gray">商家工作台</div>
           </div>
         </el-col>
         <el-col :span="4">
           <div class="item grid-content bg-purple-light footer_content">
             <div>合作咨询</div>
-            <div>商务合作：17138231888</div>
-            <div>客服微信：jingzhi711</div>
-            <div>产品经理：18100828051</div>
+            <div class="gray">商务合作：17138231888</div>
+            <div class="gray">客服微信：jingzhi711</div>
+            <div class="gray">产品经理：18100828051</div>
+            <div class="gray">(工作时间：09:00-22:00)</div>
           </div>
         </el-col>
         <el-col :span="4"
@@ -131,5 +132,8 @@ export default {
   margin-top: 20px;
   widows: 100px;
   height: 100px;
+}
+.gray{
+  color: #999;
 }
 </style>

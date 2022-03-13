@@ -60,7 +60,7 @@
 									</el-col>
 									<el-col :span="8" class="shop_info_address">
 										<img src="@/assets/address.png" class="address_icon" />
-										{{item.address}}
+										<span>{{item.address}}</span>
 									</el-col>
 								</el-row>
 							</div>
@@ -112,7 +112,7 @@
 										{{ itemss.title }}
 									</div>
 									<div class="">
-										<el-row>
+										<el-row style="marginTop:10px">
 											<el-col :span="8">
 												<div class="goods_info_price">{{ itemss.price }}</div>
 												<div class="goods_info_price_desc">到手价</div>
@@ -458,7 +458,6 @@
 			width: 340px;
 			.shop_info_top{
 				margin: 20px 0px;
-				
 				/deep/.el-row{
 					justify-content: space-between;
 					align-items: center;
@@ -471,9 +470,11 @@
 				}
 				.shop_info_address{
 					text-align: center;
+					display: flex;
+					align-items: center;
 					.address_icon {
-						width: 14px;
-						height: 14px;
+						width: 18px;
+						height: 18px;
 					}
 				}
 			}
@@ -486,6 +487,9 @@
 				position: relative;
 				.shoptitle_two_one{
 					margin: 10px 0px;
+					color:#fff;
+					overflow:hidden;text-overflow:ellipsis;word-break:break-all;white-space:nowrap;
+					max-width: 180px;
 				}
 				.shoptitle_two_two{
 					background-repeat: no-repeat;
@@ -607,6 +611,7 @@
 		width: 100%;
 		// height: 8rem;
 		display: block;
+		border-radius: 8px;
 	}
 
 	.goods_lists {
@@ -658,6 +663,7 @@
 	.goods_info_price_desc {
 		font-size: 0.7rem;
 		color: #9aacc1;
+		margin-top: 10px;
 	}
 
 	.banners {

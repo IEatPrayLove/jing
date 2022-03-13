@@ -42,10 +42,12 @@
 				<div class="pay_pay_two">
 					<span :class="{ispay:iszfb}" @click="paytype('zfb')"><i></i>支付宝</span>
 					<span :class="{ispay:isweixin}" @click="paytype('weixin')"><i></i>微信</span>
-					<p>企业对公账户如何支付？</p>
+					<p class="how_to_pay" @click="showModal">企业对公账户如何支付？</p>
 				</div>
-				<div class="pay_pay_three">
-					<span>确认购买即表示您同意鲸大大<em style="color: #5A7FB6;">服务协议</em>和<em style="color: #5A7FB6;">隐私条款</em></span>
+				<div class="pay_pay_three" @click="showxieyi">
+					<span>确认购买即表示您同意鲸大大<em style="color: #5A7FB6;">服务协议</em>
+					<!-- <em style="color: #5A7FB6;">隐私条款</em> -->
+					</span>
 				</div>
 				<div class="pay_pay_for">
 					<img v-show="iszfb" src="@/assets/zfb.png" >
@@ -67,6 +69,73 @@
 				</div>
 			</div>
 		</h-card>
+		<el-dialog
+			title="企业对公账户"
+			:visible.sync="modalStatus"
+			width="30%"
+		>
+			<el-row type="flex" justify="center" style="marginTop:20px;fontSize:18px;">
+				<el-col :span="6" :offset="2">账户名称</el-col>
+				<el-col :span="12"><div class="copy_item">
+					<input id="copy1" type="text" style="border:none;background:#fff;" value="成都鲸至电子商务有限公司">
+					<div>成都鲸至电子商务有限公司</div>
+					</div></el-col>
+				<el-col :span="6">
+					<div class="copy" @click="copyText('copy1')">复制</div>
+				</el-col>
+			</el-row>
+			<el-row type="flex" justify="center" style="marginTop:20px;fontSize:18px;">
+				<el-col :span="6" :offset="2">银行账户</el-col>
+				<el-col :span="12"><div class="copy_item"><input id="copy2" type="text" style="border:none;background:#fff;" value="128909870010802">	<div class="input_item">128909870010802</div></div></el-col>
+				<el-col :span="6">
+					<div class="copy" @click="copyText('copy2')">复制</div>
+				</el-col>
+			</el-row>
+			<el-row type="flex" justify="center" style="marginTop:20px;fontSize:18px;">
+				<el-col :span="6" :offset="2">开户银行</el-col>
+				<el-col :span="12"><div class="copy_item"><input id="copy3" type="text"  style="border:none;background:#fff;" value="招商银行成都天府大道支行">	<div>招商银行成都天府大道支行</div></div></el-col>
+				<el-col :span="6">
+					<div class="copy" @click="copyText('copy3')">复制</div>
+				</el-col>
+			</el-row>
+			<el-row type="flex" justify="center" style="marginTop:20px;fontSize:12px;">
+				<el-col style="textAlign:center;color:gray;">对公转账到帐时间可能受银行处理时间影响，建议采用在线支付；</el-col>
+			</el-row>
+			<el-row type="flex" justify="center" style="marginTop:20px;fontSize:12px;">
+				<el-col style="textAlign:center;color:gray;">请通过网银转账或自行到银行进行转账，转账成功后请将汇款底单拍照或截图发送给客服；</el-col>
+			</el-row>
+			<el-row type="flex" justify="center" style="marginTop:20px;fontSize:12px;">
+				<el-col style="textAlign:center;color:gray;">确认汇款到账后即会为您开通相关会员，开通后您可向客服索取发票。</el-col>
+			</el-row>
+		</el-dialog>
+		<el-dialog
+			title=""
+			:visible.sync="xieyiShow"
+		>
+			<el-row>
+				<el-row type="flex" justify="center">使用协议</el-row>
+<el-row>以下详述鲸大大为您提供服务的条款。</el-row>
+<el-row>
+本协议详述您使用鲸大大的服务所须遵守的条款和条件。请您在使用鲸大大各项服务之前，务必审慎阅读、充分理解本协议各条款内容。
+您只有完全同意下列所有服务条款并完成注册程序，才能成为鲸大大的用户并使用相应服务。您注册成为鲸大大用户前，必须仔细阅读本《使用协议》和《信息发布规则》，一旦您注册成为了鲸大大用户即表示您已经阅读、同意并接受本《使用协议》和《信息发布规则》中所含的所有条款和条件。您只要使用了鲸大大提供的服务，即视为您已了解并完全同意本服务条款各项内容，包括鲸大大对服务条款随时做的任何修改。如您不同意该修订，您必须终止您与鲸大大的用户关系。
+<el-row>1、 服务内容</el-row>
+<el-row>1.1鲸大大的具体服务内容由本公司根据实际情况提供具体功能与服务。本公司保留变更、调整或终止部分服务内容的权利。</el-row>
+<el-row>1.2本公司保留根据实际情况随时调整鲸大大提供的服务种类、形式。本公司不承担因业务调整给用户造成的损失。</el-row>
+<el-row>2、内容使用权</el-row>
+<el-row>2.1您可以在鲸大大中查阅、发布信息，但发布内容必须符合中国知识产权法的规定,不得侵犯他人的知识产权。本公司如果收到版权投诉,有权删除被投诉侵权的内容。</el-row>
+<el-row>3、账号使用规则</el-row>
+<el-row>3.1用户再鲸大大平台完成申请注册手续后,获得账号的使用权，该使用权仅属于初始申请注册人，禁止赠与、借用、租用、转让或售卖。因黑客行为或用户的保管疏忽导致帐号、密码遭他人非法使用，鲸大大不承担任何责任。</el-row>
+<el-row>4、隐私保护</el-row>
+<el-row>4.1保护用户隐私是鲸大大平台的重点原则，本公司通过技术手段、提供隐私保护服务功能、强化内部管理等办法充分保护用户的个人资料安全。</el-row>
+<el-row>4.2本公司保证不对外公开或向第三方提供用户注册的个人隐私资料，及用户在使用服务时存储的非公开内容。但下列情况除外:</el-row>
+<el-row>4.2.1事先获得用户的明确授权;</el-row>
+<el-row>4.2.2按照相关司法机构或政府主管部门的要求。</el-row>
+<el-row>5、服务准则</el-row>
+<el-row>5.1用户在申请使用鲸大大服务时，必须提供真实的个人资料或企业信息。如果因信息不真实而引起的问题及其后果，鲸大大不承担任何责任。</el-row>
+<el-row type="flex" justify="end">[生效时间:2021年12月31日]</el-row>
+</el-row>
+			</el-row>
+		</el-dialog>
 	</div>
 </template>
 
@@ -109,6 +178,8 @@
 				iszhuanye: true,
 				isqijian: false,
 				price: 6999,
+				modalStatus:false,
+				xieyiShow:false
 			}
 		},
 		mounted() {
@@ -136,7 +207,9 @@
 			})
 		},
 		methods: {
-
+			showModal(){
+				this.modalStatus = true
+			},
 			checkNav(item) {
 				this.navlist.forEach(item2 => {
 					item2.isSelect = false
@@ -166,6 +239,17 @@
 					this.iszhuanye = false;
 					this.price = 19999
 				}
+			},
+			copyText(index){
+				var taxt = document.getElementById(`${index}`)
+				taxt.select()
+				console.log(index,55)
+				console.log(document.execCommand('Copy'))
+				document.execCommand('Copy')
+				this.$message.success('复制成功')
+			},
+			showxieyi(){
+				this.xieyiShow = true
 			}
 		}
 	}
@@ -371,6 +455,12 @@
 				.ispay{
 					background-color: #C7DBF4;
 				}
+				.how_to_pay{
+					cursor: pointer;
+					&:hover{
+						color:orange;
+					}
+				}
 				span{
 					text-align: center;
 					position: relative;
@@ -417,6 +507,7 @@
 			}
 			.pay_pay_three{
 				font-size: 16px;
+				cursor: pointer;
 			}
 			.pay_pay_for{
 				margin-top: 50px;
@@ -479,6 +570,37 @@
 				}
 			}
 		}
+	}
+	.copy{
+		border: 1px solid blue;
+		width: 60px;
+		text-align: center;
+		color: blue;
+		border-radius: 8px;
+		cursor: pointer;
+	}
+	.copy_item{
+		position: relative;
+	}
+	#copy1{
+		// visibility: hidden;
+		position: absolute;
+		z-index: -1;
+	}
+		#copy2{
+		// visibility: hidden;
+		position: absolute;
+		z-index: -1;
+	}
+		#copy3{
+		// visibility: hidden;
+		position: absolute;
+		z-index: -1;
+	}
+	.input_item{
+		width: 100%;
+		height: 100%;
+		// text-align: center;
 	}
 	
 </style>

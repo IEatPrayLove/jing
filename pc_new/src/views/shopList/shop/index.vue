@@ -24,7 +24,7 @@
 
 
 			</div>
-			<div :class="['boxcard',isfixTab?'boxfixed':'boxab']" id='testNavBar'>
+			<div :class="['boxcard',fixY ? 'boxfixed': 'boxab']" id='testNavBar' :style="{top:( fixY ? '70px':fixab + 'px')}">
 				<h-card>
 					<div class='shoptitle'>
 						<img :src="info.logo" alt="">
@@ -44,6 +44,7 @@
 			</div>
 		</div>
 
+		<div id="mark"></div>
 		<Content :goodList="info.goods_list" />
 		<div v-if="info.goods_list == null " style=" text-align: center;height: 100px;line-height: 100px;">暂无数据</div>
 	</div>
@@ -113,7 +114,8 @@
 					},
 				],
 				isfixTab: false,
-
+				fixY:true,
+				fixab:0
 			}
 		},
 		computed: {
@@ -202,10 +204,22 @@
 				}
 			},
 			handleTabFix() {
+				var el = document.getElementById('mark')
+				var offset = el.getBoundingClientRect()
+				// console.log(el.scrollTop,555,offset)
+				if((offset.top + 350) <= window.innerHeight && offset.bottom >=0){
+					if(this.fixY){
+						this.fixY = false
+						this.fixab = window.pageYOffset
+					}
+				}else{
+					this.fixY = true
+				}
+				
 				var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
 				
 				if(scrollTop >= 75){
-					console.log(scrollTop);
+					// console.log(scrollTop);
 					var offsetTop = document.querySelector('#testNavBar').offsetTop
 					var shopheight = document.querySelector('.shop').offsetHeight
 				}
@@ -333,19 +347,20 @@
 
 		.boxfixed {
 			position: fixed;
-			right: 30px;
-			top: 0;
+			right: 350px;
+			top: 70px;
 			width: 335px;
 			z-index: 10;
 		}
 
 		.boxab {
 			position: absolute;
-			top: 0;
-			right: 0;
-			/deep/.h-card{
-				margin: 0px !important;
-			}
+			// top: 0;
+			right: 0px;
+			// /deep/.h-card{
+			// 	margin: 0px !important;
+			// }
+		}
 			.hongxin{
 				display: block;
 				background-image: url(../../../assets/hongxin-icon.png);
@@ -408,6 +423,9 @@
 					height: 20px;
 				}
 			}
-		}
+		
+	}
+	#mark{
+		height: 1px;
 	}
 </style>

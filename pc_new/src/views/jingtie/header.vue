@@ -48,7 +48,7 @@
                 标的目标：{{ item.activity_objectives }}单
               </div>
               <div class="money">
-                瓜分奖金池：<span style="color: red">{{ item.prize_pool }}</span
+                奖励金额：<span style="color: red">{{ item.prize_pool }}</span
                 >元
               </div>
             </div>
@@ -129,7 +129,7 @@
           </div>
         </div>
         <div class="box-center">
-          <div class="top-right">平台规则</div>
+          
           <el-tabs
             value="first"
             @tab-click="handleClick"
@@ -140,6 +140,9 @@
             }}</el-tab-pane>
             <el-tab-pane label="任务解析" class="jiexi" name="fourth">{{
               item.desc
+            }}</el-tab-pane>
+            <el-tab-pane label="平台规则" name="three">{{
+              item.platform_rules
             }}</el-tab-pane>
           </el-tabs>
         </div>
