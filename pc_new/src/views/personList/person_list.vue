@@ -37,7 +37,7 @@
 					<el-table :data="tableData" style="width: 100%">
 						<el-table-column label="达人" width="300">
 							<template slot-scope="scope">
-								<div class="daren_img">
+								<div class="daren_img" @click="goDaren(scope.row.douyin_link)">{{ scope.row.name }}>
 									<img :src="scope.row.pic" class="daren_pic" />
 								</div>
 								<div class="daren_info">

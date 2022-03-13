@@ -188,9 +188,138 @@
           <img src="@/assets/home/2.png" style="width: 100%" />
         </div>
       </div> -->
-      <div class="item">
+      <el-row class="platform_custom">
+        <el-row>
+            <h1 style="text-align: center;">鲸大大</h1>
+          </el-row>
+          <el-row style="marginTop:40px">
+            <el-col :span="10" :offset="7" style="text-align: center;lineHeight:24px;">内容电商（直播，短视频）工具化决策平台，在这里可以精准高效找达人、找商品快速突破电商行业闭环交互，提升效率</el-col>
+          </el-row>
+          <el-row  style="marginTop:60px" type="flex" justify="center">
+            <div class="platform_custom_mir">
+              <img src="../../assets/home/weapp.png" alt="">
+              <p>小程序</p>
+              <img class="home_weapp" src="../../assets/home/weapp.png" alt="">
+            </div>
+          </el-row>
+          <el-row>
+            <el-col :span="22" style="text-align:end;">{{bangdanList.update_date}}更新</el-col>
+          </el-row>
+          <el-row style="marginTop:10px">
+            <el-col class="bangdan" :span="22" :offset="1">
+              <div class="bangdan_container">
+                <el-row style="paddingTop:10px;fontSize:22px;" type="flex" justify="center">
+                  <el-col class="line_tabs" style="text-align: center;" :span="4" >
+                     <div class="line" :class="[curBangdan===1?'active':'']"></div> <div @click="changeBangdan(1)">找达人</div></el-col>
+                  <el-col class="line_tabs" style="text-align: center;" :span="4" @click="changeBangdan(2)">
+                    <div @click="changeBangdan(2)">找商品</div> <div class="line" :class="[curBangdan===2?'active':'']"></div></el-col>
+                  <el-col class="line_tabs" style="text-align: center;" :span="4" ><div class="line" :class="[curBangdan===3?'active':'']"></div><div @click="changeBangdan(3)">找直播</div></el-col>
+                  <el-col class="line_tabs" style="text-align: center;" :span="4" ><div class="line" :class="[curBangdan===4?'active':'']"></div><div @click="changeBangdan(4)">找视频</div></el-col>
+                </el-row>
+                <el-row style="flex:1;marginTop:40px;">
+                  <el-col>
+                    <div class="bangdan_content">
+                      <div class="bang_dan_item">
+                        <div class="bang_dan_item_left">
+                          <img class="bang_dan_pic" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4" :src="bangdanList.top1.info.pic" alt="">
+                          <img class="bang_dan_pic" v-if="curBangdan===2" :src="bangdanList.top1.info.thumb" alt="">
+                          <div class="bangdan_info">
+                            <div class="bang_dan_name"  v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4">{{bangdanList.top1.info.name}}</div>
+                            <div class="bang_dan_name"  v-if='curBangdan===2'>{{bangdanList.top1.info.title}}</div>
+                            <div class="bang_dan_rank">NO.1</div>
+                          </div>
+                        </div>
+                        <div class="bang_dan_item_right"></div>
+                      </div>
+                      <div class="bang_dan_item">
+                        <div class="bang_dan_item_left">
+                          <img class="bang_dan_pic" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4" :src="bangdanList.top2.info.pic" alt="">
+                          <img class="bang_dan_pic" v-if="curBangdan===2" :src="bangdanList.top2.info.thumb" alt="">
+                          <div class="bangdan_info">
+                            <div class="bang_dan_name" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4">{{bangdanList.top2.info.name}}</div>
+                            <div class="bang_dan_name"  v-if='curBangdan===2'>{{bangdanList.top2.info.title}}</div>
+                            <div class="bang_dan_rank">NO.2</div>
+                          </div>
+                        </div>
+                        <div class="bang_dan_item_right"></div>
+                      </div>
+                      <div class="bang_dan_item">
+                        <div class="bang_dan_item_left">
+                          <img class="bang_dan_pic" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4" :src="bangdanList.top3.info.pic" alt="">
+                          <img class="bang_dan_pic" v-if="curBangdan===2" :src="bangdanList.top3.info.thumb" alt="">
+                          <div class="bangdan_info">
+                            <div class="bang_dan_name"  v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4">{{bangdanList.top3.info.name}}</div>
+                            <div class="bang_dan_name"  v-if='curBangdan===2'>{{bangdanList.top3.info.title}}</div>
+                            <div class="bang_dan_rank">NO.3</div>
+                          </div>
+                        </div>
+                        <div class="bang_dan_item_right"></div>
+                      </div>
+                      <div class="bang_dan_item">
+                        <div class="bang_dan_item_left">
+                          <img class="bang_dan_pic" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4" :src="bangdanList.top4.info.pic" alt="">
+                          <img class="bang_dan_pic" v-if="curBangdan===2" :src="bangdanList.top4.info.thumb" alt="">
+                          <div class="bangdan_info">
+                            <div class="bang_dan_name"  v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4">{{bangdanList.top4.info.name}}</div>
+                            <div class="bang_dan_name"  v-if='curBangdan===2'>{{bangdanList.top4.info.title}}</div>
+                            <div class="bang_dan_rank">NO.4</div>
+                          </div>
+                        </div>
+                        <div class="bang_dan_item_right"></div>
+                      </div>
+                      <div class="bang_dan_item">
+                        <div class="bang_dan_item_left">
+                          <img class="bang_dan_pic" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4" :src="bangdanList.top5.info.pic" alt="">
+                          <img class="bang_dan_pic" v-if="curBangdan===2" :src="bangdanList.top5.info.thumb" alt="">
+                          <div class="bangdan_info">
+                            <div class="bang_dan_name"  v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4">{{bangdanList.top5.info.name}}</div>
+                            <div class="bang_dan_name"  v-if='curBangdan===2'>{{bangdanList.top5.info.title}}</div>
+                            <div class="bang_dan_rank">NO.5</div>
+                          </div>
+                        </div>
+                        <div class="bang_dan_item_right"></div>
+                      </div>
+                    </div>
+                  </el-col>
+                </el-row>
+              </div>
+            </el-col>
+          </el-row>
+      </el-row>
+      
+      <div class="item platform_custom">
         <div>
-          <div></div>
+          <el-row>
+            <h1 style="text-align: center;">进准爆款，人工审核精选</h1>
+          </el-row>
+          <el-row style="marginTop:40px">
+            <el-col :span="10" :offset="7" style="text-align: center;lineHeight:24px;">鲸大大只负责分析整理推荐全网实力商家，最新最全热卖爆款商品，全平台人工审核入驻，实时维护排查，全天持续上新</el-col>
+          </el-row>
+          <el-row  style="marginTop:60px" type="flex" justify="center">
+            <div class="platform_custom_mir">
+              <img src="../../assets/home/weapp.png" alt="">
+              <p>小程序</p>
+              <img class="home_weapp" src="../../assets/home/weapp.png" alt="">
+            </div>
+            
+          </el-row>
+          <el-row type="flex" justify="center" style="marginTop:40px;fontSize:24px">
+            <el-col :span="8" :offset="4">
+              <span style="color:#547BB3">1，{{platformCustom.goods_sum}}</span>
+              <span>在线高佣爆品</span>
+            </el-col>
+            <el-col :span="8" >
+              <span style="color:#547BB3">2，{{platformCustom.talent_sum}}</span>
+              <span>位直联达人</span>
+            </el-col>
+            <el-col :span="8" >
+              <span style="color:#547BB3">3，{{platformCustom.shop_sum}}</span>
+              <span>位实力商家</span>
+            </el-col>
+          </el-row>
+          <el-row>
+
+          </el-row>
         </div>
       </div>
        <div class="item-router" v-for="item in routerList" :key="item.id">
@@ -290,6 +419,9 @@ export default {
           ],
         },
       ],
+      platformCustom:{},
+      bangdanList:{},
+      curBangdan:1
     };
   },
   mounted() {
@@ -314,6 +446,8 @@ export default {
         this.$message.error(res.data.msg);
       }
     });
+    this.getHomeCustom()
+    this.getBangdan(1)
   },
   methods: {
     handleClose(done) {
@@ -324,6 +458,34 @@ export default {
       this.$emit('event',id)
       document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
+    getHomeCustom(){
+      this.$axios({
+        url:'Plblics/platformCustom',
+        method:'get',
+      }).then((res)=>{
+        if (res.data.status == 0) {
+        this.platformCustom = res.data.result;
+      } else {
+        this.$message.error(res.data.msg);
+      }
+      })
+    },
+    getBangdan(type){ // 1-达人 2-商品 3-直播带货 4-视频带货
+      this.$axios({
+        url:`/Plblics/TopList?type=${type}`,
+        method:'get',
+      }).then((res)=>{
+        if (res.data.status == 0) {
+        this.bangdanList = res.data.result;
+      } else {
+        this.$message.error(res.data.msg);
+      }
+      })
+    },
+    changeBangdan(type){
+      this.curBangdan = type;
+      this.getBangdan(type)
+    }
   },
 };
 </script>
@@ -339,6 +501,122 @@ export default {
 }
 .item {
 }
+.platform_custom{
+  box-shadow: 0px 2px 2px 2px #666;
+  padding: 60px 0;
+  margin-top: 10px;
+}
+.bangdan{
+  background-color: rgba(255, 255, 255, .5);
+  height: 300px;
+  padding: 15px;
+}
+.bangdan_container{
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+}
+.bang_dan_name{
+  font-size: 18px;
+  font-weight: 600;
+  color: #233;
+  max-width: 160px;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+}
+.bang_dan_rank{
+  color: #233;
+    font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+.bangdan_content{
+  display: flex;
+  justify-content: space-around;
+}
+.bang_dan_item{
+  width: 206px;
+  overflow: hidden;
+  transition: width .3s ease-in-out;
+  cursor: pointer;
+}
+.bang_dan_pic{
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+}
+.bang_dan_item_left{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img{
+    margin-bottom: 20px;
+  }
+}
+.bangdan_info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.line_tabs{
+  position: relative;
+  .line{
+    content: '';
+    width: 20%;
+    height: 8px;
+    bottom: -10px;
+    left: 50%;
+    position: absolute;
+    transform: translate3d(-50%,0,0) scale(0);
+    background-color: orange;
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &.active{
+      transform: translate3d(-50%,0,0) scale(1);
+    }
+  }
+}
+.platform_custom_mir{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #fff;
+  width: 120px;
+  // background-color: #666;
+  padding: 5px;
+  position: relative;
+  .home_weapp{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: -200px;
+    left: -50px;
+    visibility: hidden;
+  }
+  img{
+    width: 35px;
+    height: 35px;
+  }
+  p{
+    font-size: 22px;
+    color: #233;
+    &:hover{
+      color:orange;
+    }
+  }
+  &:hover>.home_weapp{
+    visibility:visible;
+    color:orange
+  }
+}
+
 .index1 {
   width: 100%;
 }
