@@ -219,7 +219,7 @@
                 <el-row style="flex:1;marginTop:40px;">
                   <el-col>
                     <div class="bangdan_content">
-                      <div class="bang_dan_item">
+                      <div class="bang_dan_item" :class="[active[0]?'active':'']" @mouseenter="handleMoseEnter" @mouseleave="handleMoseLeave">
                         <div class="bang_dan_item_left">
                           <img class="bang_dan_pic" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4" :src="bangdanList.top1.info.pic" alt="">
                           <img class="bang_dan_pic" v-if="curBangdan===2" :src="bangdanList.top1.info.thumb" alt="">
@@ -229,7 +229,16 @@
                             <div class="bang_dan_rank">NO.1</div>
                           </div>
                         </div>
-                        <div class="bang_dan_item_right"></div>
+                        <div class="bang_dan_item_right" :class="[active[0]?'active':'']">
+                          <div v-if="curBangdan===1" class="flex-col">
+                            <div class="bang_dan_item_right_text">昨日增粉</div>
+                            <div class="bang_dan_item_right_num">{{bangdanList.top1.daren_add}}</div>
+                          </div>
+                          <div v-if="curBangdan===1" class="flex-col">
+                            <div class="bang_dan_item_right_text">粉丝总量</div>
+                            <div class="bang_dan_item_right_num">{{bangdanList.top1.daren_sum}}</div>
+                          </div>
+                        </div>
                       </div>
                       <div class="bang_dan_item">
                         <div class="bang_dan_item_left">
@@ -439,7 +448,6 @@
 <script>
 import Banner from "@/components/Banner/index.vue";
 import 'animate.css';
-import Swiper from 'swiper'
 export default {
   components: { Banner },
   data() {
@@ -537,7 +545,8 @@ export default {
           disableOnInteraction: false,
           reverseDirection:false
         }
-      }
+      },
+      active:[false,false,false,false,false]
     };
   },
   mounted() {
@@ -594,6 +603,12 @@ export default {
     changpt(arr){
       var a = arr.splice(-1,1)
       this.log2.unshift(a)
+    },
+    handleMoseEnter(){
+      this.active[0] = true
+    },
+    handleMoseLeave(){
+      this.active[0] = false
     },
     handleClose(done) {
       done();
@@ -697,12 +712,27 @@ export default {
 .bangdan_content{
   display: flex;
   justify-content: space-around;
+  position: relative;
+  &:not(:first-child):before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-left: 1px solid rgb(245 245 245);
+    opacity: 1;
+  }
 }
 .bang_dan_item{
   width: 206px;
   overflow: hidden;
   transition: width .3s ease-in-out;
+  display: flex;
+  align-items: center;
   cursor: pointer;
+  &.active{
+    width:365px;  
+  }
 }
 .bang_dan_pic{
   width: 86px;
@@ -713,8 +743,35 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-basis: 206px;
+  flex-grow: 0;
+  flex-shrink: 0;
   img{
     margin-bottom: 20px;
+  }
+}
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
+.bang_dan_item_right{
+  visibility: hidden;
+  flex-basis: 159px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  transition: visibility .3s ease-in-out;
+  &.active{
+    visibility: visible;
+  }
+  .bang_dan_item_right_num{
+    font-family: CDSHT-Regular,CDSHT;
+    font-size: 22px;
+  }
+  .bang_dan_item_right_text{
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+    font-weight: 400;
   }
 }
 .bangdan_info{
