@@ -1,0 +1,29 @@
+<template>
+  <div>
+    <Topnav />
+    <h-card>
+      <Datatop />
+    </h-card>
+    <h-card>
+      <Ranksearch />
+    </h-card>
+    <h-card>
+      <Shoprank />
+    </h-card>
+  </div>
+</template>
+
+<script>
+import Topnav from '@/components/order/topnav.vue'
+import Datatop from '@/components/order/orderdata/datatop.vue'
+import Ranksearch from '@/components/productRanking/ranksearch.vue'
+import Shoprank from '@/components/shoprank/index.vue'
+export default {
+  components: {
+    Topnav, Datatop, Ranksearch, Shoprank
+  }
+}
+</script>
+
+<style lang="less" scoped>
+</style>
