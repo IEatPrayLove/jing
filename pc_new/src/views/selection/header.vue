@@ -123,6 +123,7 @@ export default {
     this.getCategory();
   },
   methods: {
+    // 不是vip不让切换类目
     // 类目切换
     checkCategoy (item) {
       this.pageIndex = 1;
@@ -134,6 +135,7 @@ export default {
     },
     // 综合切换
     checkNav (item) {
+      // 不是vip不让切换综合
       this.bottomlist.map((v) => v.name == item.name ? v.isSelect = true : v.isSelect = false)
       this.$emit('checkNav', item)
     },

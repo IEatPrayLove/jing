@@ -143,10 +143,10 @@
 				<el-col :span="24" style="text-align: center"> 暂无数据 </el-col>
 			</el-row>
 			<!-- 添加分页 -->
-			<el-pagination @current-change="changePage" :current-page="pageIndex" :page-size="pageSize"
+			<!-- <el-pagination @current-change="changePage" :current-page="pageIndex" :page-size="pageSize"
 				layout=" prev, pager, next" :total="total">
-			</el-pagination>
-			
+			</el-pagination> -->
+			<div class="back_top" @click="backTop">回到顶部</div>
 		</div>
 	</div>
 </template>
@@ -204,10 +204,17 @@
 				}
 			});
 			this.getCategory();
-			// window.addEventListener("scroll",(e)=>{
-			// 	this.scrollEvent(e)
-			// })
-			this.getList();
+			window.addEventListener("scroll",(e)=>{
+				var el = document.getElementsByClassName('footer-div')[0]
+				var offset = el.getBoundingClientRect()
+				// console.log(offset)
+				if(offset.top < window.innerHeight){
+					this.scrollEvent(e)
+				}
+				
+			})
+			
+			// this.getList();
 		},
 		methods: {
 			getroundClass(index) {
@@ -259,12 +266,12 @@
 			//获取店铺列表
 			getList(e) {
 				if (this.LOCK_STATUS) return;
-				if (e instanceof Event) {
-							var el = e.target;
-							var scHeight = el.scrollHeight, scTop = el.scrollTop, clHeight = el.clientHeight;
-							//距离底部100px时，开始加载数据
-							if (scHeight - scTop > clHeight + 100) return;
-				}
+				// if (e instanceof Event) {
+				// 			var el = e.target;
+				// 			var scHeight = el.scrollHeight, scTop = el.scrollTop, clHeight = el.clientHeight;
+				// 			//距离底部100px时，开始加载数据
+				// 			if (scHeight - scTop > clHeight + 100) return;
+				// }
 				this.LOCK_STATUS = true;
 				this.$axios({
 					url: "Shop/shopListPc",
@@ -279,7 +286,7 @@
 					if (res.data.status == 0) {
 						++this.pageIndex
 						this.LOCK_STATUS = false;
-						this.tableData = res.data.result.list;
+						this.tableData = this.tableData.concat(res.data.result.list);
 						this.total = res.data.result.count;
 						this.tableDat = this.tableDat.forEach(item => {
 							if (item.goods_list.length > 2) {
@@ -298,6 +305,9 @@
 				this.pageIndex = val;
 				// document.body.scrollTop=document.documentElement.scrollTop=0
 				this.getList();
+			},
+			backTop(){
+				document.body.scrollTop=document.documentElement.scrollTop=0
 			},
 			changeSize(val) {
 				//控制条数的值
@@ -366,6 +376,23 @@
 </script>
 
 <style lang='less' scoped>
+	.back_top{
+		position: fixed;
+		right: 30px;
+		bottom: 50px;
+		width: 100px;
+		height: 100px;
+		border-radius: 100%;
+		background-color: #fff;
+		color: orange;
+		text-align: center;
+		line-height: 100px;
+		cursor: pointer;
+		&:hover{
+			background-color: orange;
+			color: #fff;
+		}
+	}
 	.mains {
 		width: 100%;
 		max-width: 1200px;

@@ -207,7 +207,7 @@
 				var el = document.getElementById('mark')
 				var offset = el.getBoundingClientRect()
 				// console.log(el.scrollTop,555,offset)
-				if((offset.top + 350) <= window.innerHeight && offset.bottom >=0){
+				if((offset.top + 100) <= window.innerHeight){
 					if(this.fixY){
 						this.fixY = false
 						this.fixab = window.pageYOffset
@@ -347,7 +347,7 @@
 
 		.boxfixed {
 			position: fixed;
-			right: 15%;
+			right: 10%;
 			top: 70px;
 			width: 335px;
 			z-index: 10;
@@ -356,7 +356,7 @@
 		.boxab {
 			position: absolute;
 			// top: 0;
-			right: -30px;
+			right: 0px;
 			// /deep/.h-card{
 			// 	margin: 0px !important;
 			// }

@@ -34,7 +34,7 @@
             </div>
           </el-col>
         </el-row>
-        <el-row style="margin-top: 50px;transform:scale(1.1)">
+        <el-row style="margin-top: 50px;transform:scale(1)">
           <el-col :span="12" style="margin-top: 20px">
             <el-row>
               <el-col :span="13" class="border_r border_b title3_bg">
@@ -285,8 +285,39 @@
               <swiper-slide class="top_w_item" v-for="item in topShop" :key="item.id + item.name">
                   <div class="top_shop_container">
                     <img class="top_img" :src="item.logo" alt="">
-                    <div class="top_name">
-                      {{item.name}}
+                    <div class="top_shop_info">
+                      <el-row class="top_name">
+                        <el-col>{{item.name}}</el-col>
+                      </el-row>
+                      <el-row class="mt-10">
+                        <el-col :span="12">
+                          <span class="shop_tag"><span class="show_num">TOP</span>品牌</span>
+                        </el-col>
+                        <el-col :span="12">
+                            <span>类别：</span>
+                            <span class="orange">{{item.categories}}</span>
+                        </el-col>
+                      </el-row>
+                      <el-row class="shop_sales_num mt-10">
+                        <el-col :span="8">
+                          <el-row>
+                            <el-col class="show_num">{{item.max_commission}}%</el-col>
+                            <el-col class="mt-10">最高佣金</el-col>
+                          </el-row>
+                        </el-col>
+                        <el-col :span="8">
+                          <el-row>
+                            <el-col class="show_num">{{item.month_amount}}</el-col>
+                            <el-col class="mt-10">30天销售额</el-col>
+                          </el-row>
+                        </el-col>
+                        <el-col :span="8">
+                          <el-row>
+                            <el-col class="show_num">{{item.month_talent}}</el-col>
+                            <el-col class="mt-10">达人带货数</el-col>
+                          </el-row>
+                        </el-col>
+                      </el-row>
                     </div>
                   </div>
               </swiper-slide>
@@ -338,37 +369,7 @@
         </div>
       </el-dialog>
     </div>
-      <!-- <div class="con">
-        <div
-          v-for="item in log1"
-          :key="item"
-          class="con_item"
-          
-        >
-        <img :src="require(`../../assets/home/log${item}.jpeg`)" alt="">
-        </div>
-        
-  </div>
-   <div class="con">
-        <div
-          v-for="item in log2"
-          :key="item"
-          class="con_item"
-        >
-        <img :src="require(`../../assets/home/log${item}.jpeg`)" alt="">
-        </div>
-        
-  </div>
-   <div class="con">
-        <div
-          v-for="item in log3"
-          :key="item"
-          class="con_item"
-        >
-        <img :src="require(`../../assets/home/log${item}.jpeg`)" alt="">
-        </div>
-        
-  </div> -->
+      
   <swiper :options="initData" class="con">
     
     <swiper-slide class="con_item"  v-for="item in log1" :key="item">
@@ -471,10 +472,11 @@ export default {
         observeParents:true,
         // loopedSlides: 5,
         slidesPerView: 'auto',
+        speed:2500,
         autoplay:{
-          delay:1000,
-          disableOnInteraction: false,
-          reverseDirection:false
+          delay:0,
+          disableOnInteraction: true,
+          reverseDirection:false,
         }
       },
       initData2:{
@@ -483,9 +485,10 @@ export default {
         observeParents:true,
         // loopedSlides: 5,
         slidesPerView: 'auto',
+        speed:2500,
         autoplay:{
-          delay:1000,
-          disableOnInteraction: false,
+          delay:0,
+          disableOnInteraction: true,
           reverseDirection:true
         }
       },
@@ -495,9 +498,10 @@ export default {
         observeParents:true,
         // loopedSlides: 5,
         slidesPerView: 'auto',
+        speed:2500,
         autoplay:{
-          delay:1000,
-          disableOnInteraction: false,
+          delay:0,
+          disableOnInteraction: true,
           reverseDirection:false
         },
         on:{
@@ -689,7 +693,7 @@ export default {
 .item {
 }
 .platform_custom{
-  box-shadow: 0px 2px 2px 2px #666;
+  // box-shadow: 0px 2px 2px 2px #666;
   padding: 60px 0;
   margin-top: 10px;
 }
@@ -813,26 +817,60 @@ export default {
   }
 }
 .top_w{
-  width:1200px
+  width:1200px;
+  margin-top: 40px;
+}
+.mt-10{
+  margin-top:10px;
 }
 .top_w_item{
-  width: 200px;
+  width: 250px;
+  margin-left: 25px;
+  box-shadow: 0px 0px 2px 2px #666;
+  height: 100%;
 }
 .top_shop_container{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
-  width: 200px;
+  
+  // width: 250px;
 }
 .top_img{
-  width: 180px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
+}
+.top_shop_info{
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
 }
 .top_name{
   font-weight: 600;
   color: #233;
-  margin-top: 20px;
+  // margin-top: 10px;
+}
+.shop_sales_num{
+  font-size: 12px;
+  color:#666;
+  // line-height: 20px;
+}
+.show_num{
+  color:red;
+  font-weight: 600;
+}
+.shop_tag{
+  height: 100%;
+  padding: 5px 5px;
+  background-color: #000;
+  box-sizing: border-box;
+  border-radius: 4px;
+  color: #fff;
+}
+.orange{
+  color:orange;
 }
 .platform_custom_mir{
   display: flex;
@@ -1214,7 +1252,11 @@ export default {
   }
 }
 .con_item{
-  transition: all .3s ease-in-out;
+  -webkit-transition-timing-function: linear; /*之前是ease-out*/
+    -moz-transition-timing-function: linear;
+    -ms-transition-timing-function: linear;
+    -o-transition-timing-function: linear;
+    transition-timing-function: linear;
    width: 150px;
   height:150px;
   // position: absolute;
@@ -1228,7 +1270,13 @@ export default {
     box-shadow: -1px -1px 2px 2px orange;
   }
 }
-
+.swiper-container .swiper-wrapper{
+    -webkit-transition-timing-function: linear; /*之前是ease-out*/
+    -moz-transition-timing-function: linear;
+    -ms-transition-timing-function: linear;
+    -o-transition-timing-function: linear;
+    transition-timing-function: linear;
+}
 
 @keyframes text-shadow-pop-tl {
   0% {
