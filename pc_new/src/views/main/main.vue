@@ -219,74 +219,28 @@
                 <el-row style="flex:1;marginTop:40px;">
                   <el-col>
                     <div class="bangdan_content">
-                      <div class="bang_dan_item" :class="[active[0]?'active':'']" @mouseenter="handleMoseEnter" @mouseleave="handleMoseLeave">
+                      <div class="bang_dan_item" v-for="(item,index) in bangdanList.temp" :key="item.info.id" :class="[active[index]?'active':'']" @mouseenter="handleMoseEnter(index)">
                         <div class="bang_dan_item_left">
-                          <img class="bang_dan_pic" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4" :src="bangdanList.top1.info.pic" alt="">
-                          <img class="bang_dan_pic" v-if="curBangdan===2" :src="bangdanList.top1.info.thumb" alt="">
+                          <img class="bang_dan_pic" @click="goDaren(item.info && item.info.link)" :src="item.info && item.info.pic" alt="">
                           <div class="bangdan_info">
-                            <div class="bang_dan_name"  v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4">{{bangdanList.top1.info.name}}</div>
-                            <div class="bang_dan_name"  v-if='curBangdan===2'>{{bangdanList.top1.info.title}}</div>
-                            <div class="bang_dan_rank">NO.1</div>
+                            <div class="bang_dan_name">{{item.info && item.info.name}}</div>
+                            <div class="bang_dan_rank">NO.{{index+1}}</div>
                           </div>
                         </div>
-                        <div class="bang_dan_item_right" :class="[active[0]?'active':'']">
-                          <div v-if="curBangdan===1" class="flex-col">
-                            <div class="bang_dan_item_right_text">昨日增粉</div>
-                            <div class="bang_dan_item_right_num">{{bangdanList.top1.daren_add}}</div>
+                        <div class="bang_dan_item_right" :class="[active[index]?'active':'']">
+                          <div class="flex-col">
+                            <div class="bang_dan_item_right_text">{{item.right_top}}</div>
+                            <div class="bang_dan_item_right_num">{{item.right_top_num}}</div>
                           </div>
-                          <div v-if="curBangdan===1" class="flex-col">
-                            <div class="bang_dan_item_right_text">粉丝总量</div>
-                            <div class="bang_dan_item_right_num">{{bangdanList.top1.daren_sum}}</div>
+                          <div class="flex-col" v-if="curBangdan === 4">
+                            <div class="bang_dan_item_right_text">{{item.right_middle}}</div>
+                            <div class="bang_dan_item_right_num">{{item.right_middle_num}}</div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="bang_dan_item">
-                        <div class="bang_dan_item_left">
-                          <img class="bang_dan_pic" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4" :src="bangdanList.top2.info.pic" alt="">
-                          <img class="bang_dan_pic" v-if="curBangdan===2" :src="bangdanList.top2.info.thumb" alt="">
-                          <div class="bangdan_info">
-                            <div class="bang_dan_name" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4">{{bangdanList.top2.info.name}}</div>
-                            <div class="bang_dan_name"  v-if='curBangdan===2'>{{bangdanList.top2.info.title}}</div>
-                            <div class="bang_dan_rank">NO.2</div>
+                          <div class="flex-col">
+                            <div class="bang_dan_item_right_text">{{item.right_bottom}}</div>
+                            <div class="bang_dan_item_right_num">{{item.right_bottom_num}}</div>
                           </div>
                         </div>
-                        <div class="bang_dan_item_right"></div>
-                      </div>
-                      <div class="bang_dan_item">
-                        <div class="bang_dan_item_left">
-                          <img class="bang_dan_pic" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4" :src="bangdanList.top3.info.pic" alt="">
-                          <img class="bang_dan_pic" v-if="curBangdan===2" :src="bangdanList.top3.info.thumb" alt="">
-                          <div class="bangdan_info">
-                            <div class="bang_dan_name"  v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4">{{bangdanList.top3.info.name}}</div>
-                            <div class="bang_dan_name"  v-if='curBangdan===2'>{{bangdanList.top3.info.title}}</div>
-                            <div class="bang_dan_rank">NO.3</div>
-                          </div>
-                        </div>
-                        <div class="bang_dan_item_right"></div>
-                      </div>
-                      <div class="bang_dan_item">
-                        <div class="bang_dan_item_left">
-                          <img class="bang_dan_pic" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4" :src="bangdanList.top4.info.pic" alt="">
-                          <img class="bang_dan_pic" v-if="curBangdan===2" :src="bangdanList.top4.info.thumb" alt="">
-                          <div class="bangdan_info">
-                            <div class="bang_dan_name"  v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4">{{bangdanList.top4.info.name}}</div>
-                            <div class="bang_dan_name"  v-if='curBangdan===2'>{{bangdanList.top4.info.title}}</div>
-                            <div class="bang_dan_rank">NO.4</div>
-                          </div>
-                        </div>
-                        <div class="bang_dan_item_right"></div>
-                      </div>
-                      <div class="bang_dan_item">
-                        <div class="bang_dan_item_left">
-                          <img class="bang_dan_pic" v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4" :src="bangdanList.top5.info.pic" alt="">
-                          <img class="bang_dan_pic" v-if="curBangdan===2" :src="bangdanList.top5.info.thumb" alt="">
-                          <div class="bangdan_info">
-                            <div class="bang_dan_name"  v-if="curBangdan===1 || curBangdan===3 ||  curBangdan===4">{{bangdanList.top5.info.name}}</div>
-                            <div class="bang_dan_name"  v-if='curBangdan===2'>{{bangdanList.top5.info.title}}</div>
-                            <div class="bang_dan_rank">NO.5</div>
-                          </div>
-                        </div>
-                        <div class="bang_dan_item_right"></div>
                       </div>
                     </div>
                   </el-col>
@@ -546,21 +500,10 @@ export default {
           reverseDirection:false
         }
       },
-      active:[false,false,false,false,false]
+      active:[true,false,false,false,false]
     };
   },
-  mounted() {
-    document.addEventListener('scroll',(e)=>{
-      var tarEl = document.getElementsByClassName('home_new_banner')[0]
-      const offset = tarEl.getBoundingClientRect();
-      const offsetTop = offset.top;
-      const offsetBottom = offset.bottom;
-      if(offsetTop <= window.innerHeight && offsetBottom >=0){
-        this.home_new_banner_show = true
-      }else{
-        this.home_new_banner_show = false
-      }
-    })
+  beforeMount(){
     let arr1  = []
     let arr2  = []
     let arr3  = []
@@ -582,14 +525,23 @@ export default {
         this.$message.error(res.data.msg);
       }
     });
-    this.getHomeCustom()
-    this.getBangdan(1)
+     this.getHomeCustom()
     this.getTopShop()
-    // setInterval(()=>{
-    //   this.changp(arr1)
-    //   this.changm(arr3)
-    //   this.changpt(arr2)
-    // },1000)
+  },
+  mounted() {
+    document.addEventListener('scroll',(e)=>{
+      var tarEl = document.getElementsByClassName('home_new_banner')[0]
+      const offset = tarEl.getBoundingClientRect();
+      const offsetTop = offset.top;
+      const offsetBottom = offset.bottom;
+      if(offsetTop <= window.innerHeight && offsetBottom >=0){
+        this.home_new_banner_show = true
+      }else{
+        this.home_new_banner_show = false
+      }
+    })
+    
+   
   },
   methods: {
     changp(arr){
@@ -604,12 +556,21 @@ export default {
       var a = arr.splice(-1,1)
       this.log2.unshift(a)
     },
-    handleMoseEnter(){
-      this.active[0] = true
+    handleMoseEnter(index){
+      var tempData = JSON.parse(JSON.stringify(this.active))
+      for(let i =0;i<tempData.length;i++){
+        if(i == index){
+          tempData[i] = true
+        }else{
+          tempData[i] = false
+        }
+      }
+      this.active =  tempData
     },
-    handleMoseLeave(){
-      this.active[0] = false
-    },
+    // 跳转达人首页
+			goDaren(href) {
+				window.location.href = href;
+			},
     handleClose(done) {
       done();
     },
@@ -628,6 +589,9 @@ export default {
       } else {
         this.$message.error(res.data.msg);
       }
+      })
+      this.$nextTick(()=>{
+        this.getBangdan(1)
       })
     },
     getTopShop(){
@@ -648,7 +612,46 @@ export default {
         method:'get',
       }).then((res)=>{
         if (res.data.status == 0) {
-        this.bangdanList = res.data.result;
+          const result = res.data.result
+          // 获取长度
+          let temp = []
+          const keys = Object.keys(result)
+          const ln = keys.length;
+          for(let i = 0; i<ln-1;i++){
+            temp.push(result[keys[i]])
+          }
+          temp.map((item,index)=>{
+            item.id = item.info.id;
+            if(type === 1){
+              item.info.link = item.info.douyin_link
+              item.right_top = '昨日增粉';
+              item.right_bottom = '粉丝总量';
+              item.right_top_num = item.daren_add;
+              item.right_bottom_num = item.daren_sum
+            }else if(type === 2){
+              item.info.name = item.info.title
+              item.info.pic = item.info.thumb
+              item.right_top = '价格';
+              item.right_bottom = '昨日销量';
+              item.right_top_num = item.goods_price;
+              item.right_bottom_num = item.goods_sales
+            } else if ( type === 3){
+              item.right_top = '带货热度';
+              item.right_bottom = '人气峰值';
+              item.right_top_num = item.daren_hits;
+              item.right_bottom_num = item.daren_sales
+              item.info.link = item.info.douyin_link
+            } else if( type === 4){
+              item.info.link = item.info.douyin_link
+              item.right_top = '点赞';
+              item.right_middle = '转发'
+              item.right_bottom = '评论';
+              item.right_top_num = item.daren_zan;
+              item.right_middle_num = item.daren_commit 
+              item.right_bottom_num = item.daren_sales
+            }
+          })
+          this.bangdanList = {temp,update_date:result.update_date};
       } else {
         this.$message.error(res.data.msg);
       }
@@ -719,7 +722,7 @@ export default {
     top: 0;
     bottom: 0;
     left: 0;
-    border-left: 1px solid rgb(245 245 245);
+    border-left: 1px solid rgb(245,245,245);
     opacity: 1;
   }
 }
