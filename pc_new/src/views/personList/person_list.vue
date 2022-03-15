@@ -146,7 +146,7 @@
 							<template slot-scope="scope">
 								<span style="margin-left: 10px;font-weight: 600;">{{
                   scope.row.line_people
-                }}W</span>
+                }}</span>
 							</template>
 						</el-table-column>
 						<el-table-column label="平均播放量">
@@ -164,7 +164,7 @@
 						<el-table-column label="推广产品数">
 							<template slot-scope="scope">
 								<span style="margin-left: 10px;font-weight: 600;">{{
-                  scope.row.minute_sales
+                  scope.row.minute_sales.split('.')[0]
                 }}</span>
 							</template>
 						</el-table-column>

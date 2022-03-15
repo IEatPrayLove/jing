@@ -402,6 +402,7 @@
 <script>
 import Banner from "@/components/Banner/index.vue";
 import 'animate.css';
+var vm = null
 export default {
   components: { Banner },
   data() {
@@ -498,10 +499,18 @@ export default {
           delay:1000,
           disableOnInteraction: false,
           reverseDirection:false
+        },
+        on:{
+          click:function(){
+             vm.toShopFn(this.realIndex)
+          }
         }
       },
       active:[true,false,false,false,false]
     };
+  },
+  created(){
+    vm = this;
   },
   beforeMount(){
     let arr1  = []
@@ -544,6 +553,9 @@ export default {
    
   },
   methods: {
+    toShopFn(index){
+      this.$router.push(`/shop?uid=${this.topShop[index].id}`)
+    },
     changp(arr){
       var a = arr.splice(0,1)
       this.log1.push(a)

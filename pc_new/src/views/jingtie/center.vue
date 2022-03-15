@@ -1,6 +1,6 @@
 <template>
   <div class="center1">
-    <img src="@/assets/allowanc/resource.png" class="boo_images" alt="" />
+    <!-- <img src="@/assets/allowanc/resource.png" class="boo_images" alt="" /> -->
     <div class="content" v-for="(item, index) in list" :key="index">
       <div class="box">
         <div class="top">

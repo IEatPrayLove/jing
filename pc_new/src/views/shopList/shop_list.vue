@@ -1,5 +1,5 @@
 <template>
-	<div class="mains">
+	<div class="mains" @scroll="scrollEvent($event)">
 		<div class="nav-list">
 			<div v-for="(item, index) in navList" :key="index" @click="checkShopType(item)">{{item.name}}</div>
 		</div>
@@ -97,10 +97,11 @@
 						
 						</el-col>
 					</el-row>
+					
 					<el-row class="goods_lists">
 						<el-col :span="24">
 							<el-row>
-								<el-col :span="11" class="goods_list" 
+								<el-col :span="7" class="goods_list" 
 									v-for="(itemss, indexss) in item.goods_list" :key="indexss">
 									<div class="goods_info_top">
 										<img :src="itemss.thumb" class="goods_info_pic" />
@@ -135,6 +136,7 @@
 							</el-row>
 						</el-col>
 					</el-row>
+					
 				</el-col>
 			</el-row>
 			<el-row v-else>
@@ -182,7 +184,12 @@
 						id: 3,
 						name: '找源头'
 					}
-				]
+				],
+				EVENT_DATA_FLOW : "ajax_data_pulled",
+				CURRENT_PAGE_INDEX : 1,
+				LOCK_STATUS : false,
+				loading: true,
+				bill_list: [],
 			};
 		},
 		mounted() {
@@ -197,6 +204,9 @@
 				}
 			});
 			this.getCategory();
+			// window.addEventListener("scroll",(e)=>{
+			// 	this.scrollEvent(e)
+			// })
 			this.getList();
 		},
 		methods: {
@@ -247,7 +257,15 @@
 				});
 			},
 			//获取店铺列表
-			getList() {
+			getList(e) {
+				if (this.LOCK_STATUS) return;
+				if (e instanceof Event) {
+							var el = e.target;
+							var scHeight = el.scrollHeight, scTop = el.scrollTop, clHeight = el.clientHeight;
+							//距离底部100px时，开始加载数据
+							if (scHeight - scTop > clHeight + 100) return;
+				}
+				this.LOCK_STATUS = true;
 				this.$axios({
 					url: "Shop/shopListPc",
 					method: "get",
@@ -259,6 +277,8 @@
 					},
 				}).then((res) => {
 					if (res.data.status == 0) {
+						++this.pageIndex
+						this.LOCK_STATUS = false;
 						this.tableData = res.data.result.list;
 						this.total = res.data.result.count;
 						this.tableDat = this.tableDat.forEach(item => {
@@ -268,6 +288,7 @@
 						});
 						this.count = res.data.result.count;
 					} else {
+						this.LOCK_STATUS = false;
 						this.$message.error(res.data.msg);
 					}
 				});
@@ -275,7 +296,7 @@
 			changePage(val) {
 				//翻页功能
 				this.pageIndex = val;
-				document.body.scrollTop=document.documentElement.scrollTop=0
+				// document.body.scrollTop=document.documentElement.scrollTop=0
 				this.getList();
 			},
 			changeSize(val) {
@@ -293,7 +314,53 @@
 				})
 				sessionStorage.shopId = JSON.stringify(item)
 				document.documentElement.scrollTop = 0
-			}
+			},
+			//节流
+			throttled:  function (func, wait, options) {
+					var self = this;
+					var timeout, context, args, result
+					var previous = 0
+					if (!options) options = {}
+
+					var later = function () {
+								previous = options.leading === false ? 0 : self.now()
+								timeout = null
+								result = func.apply(context, args)
+								if (!timeout) context = args = null
+					}
+
+						var throttled = function () {
+							var now = self.now()
+							if (!previous && options.leading === false) previous = now
+							var remaining = wait - (now - previous)
+							context = this
+							args = arguments
+							if (remaining <= 0 || remaining > wait) {
+										if (timeout) {
+											clearTimeout(timeout)
+											timeout = null
+									}
+									previous = now
+									result = func.apply(context, args)
+									if (!timeout) context = args = null
+							} else if (!timeout && options.trailing !== false) {
+									timeout = setTimeout(later, remaining)
+							}
+							return result;
+					}
+
+					throttled.cancel = function () {
+							clearTimeout(timeout)
+							previous = 0
+							timeout = context = args = null
+					}
+
+					return throttled;
+			},
+			//滚动时对滚动事件进行节流
+			scrollEvent(e) {
+				this.throttled(this.getList(e), 300)
+			},
 		},
 	};
 </script>
@@ -612,6 +679,11 @@
 		// height: 8rem;
 		display: block;
 		border-radius: 8px;
+	}
+
+	.goods_lists_container{
+		height: 100%;
+		overflow-y: scroll;
 	}
 
 	.goods_lists {

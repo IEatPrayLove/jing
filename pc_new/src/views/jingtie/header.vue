@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <img src="@/assets/jintie.png" alt="" class="top_imgs" />
+    <!-- <img src="@/assets/jintie.png" alt="" class="top_imgs" /> -->
     <div class="content" v-for="(item, index) in list" :key="index">
       <div class="box">
         <div class="top">
@@ -230,8 +230,8 @@ export default {
   height: 100%;
 
   .top_imgs {
-    min-width: 800px;
-    width: 100%;
+    // min-width: 800px;
+    width: 50%;
   }
 
   .content {

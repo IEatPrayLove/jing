@@ -347,7 +347,7 @@
 
 		.boxfixed {
 			position: fixed;
-			right: 350px;
+			right: 15%;
 			top: 70px;
 			width: 335px;
 			z-index: 10;
@@ -356,7 +356,7 @@
 		.boxab {
 			position: absolute;
 			// top: 0;
-			right: 0px;
+			right: -30px;
 			// /deep/.h-card{
 			// 	margin: 0px !important;
 			// }
