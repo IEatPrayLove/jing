@@ -144,7 +144,7 @@
           appid="wxa1289cc057f29906"
           :scope="'snsapi_login'"
           :theme="'black'"
-          :redirect_uri="encodeURIComponent('https://jjjdada.com/main')"
+          :redirect_uri="encodeURIComponent('https://jjjdada.com')"
           :href="'data:text/css;base64,LmxvZ2luX3BpY3N7CiAgICAgIHdpZHRoOiA0MDBycHg7CiAgICAgIGhlaWdodDogNDAwcnB4OwogIH0='"
           rel="external nofollow"
         >
