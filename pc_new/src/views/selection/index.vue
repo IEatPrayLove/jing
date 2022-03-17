@@ -43,13 +43,13 @@
 			</div>
 			<Header @checkCategoy="checkCategoy" @checkNav="checkNav" @changLabel="changLabel"
 				@changCloseLabel="changCloseLabel" />
-			<Content :goodList="goodList" />
+			<Content :goodList="goodList" :vipInfo="vip_info" />
 			<div v-if="goodList.length==0" style=" text-align: center;height: 100px;line-height: 100px;">暂无数据</div>
-			<div class="block">
+			<!-- <div class="block">
 				<el-pagination @current-change="handleCurrentChange" :current-page="pageIndex" :page-size="pageSize"
 					layout=" prev, pager, next" :total="total">
 				</el-pagination>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>
@@ -70,11 +70,18 @@
 				order_field: "",
 				total: 0,
 				pageSize: 20,
-				pageIndex: 1
+				pageIndex: 1,
+				vip_info:{},
+				EVENT_DATA_FLOW : "ajax_data_pulled",
+				CURRENT_PAGE_INDEX : 1,
+				LOCK_STATUS : false,
+				loading: true,
+				bill_list: [],
 			};
 		},
 		mounted() {
 			// 获取商品列表
+			window.addEventListener("scroll",this.handleScroll)
 			this.getList();
 			//console.log(this)
 			this.$axios({
@@ -87,20 +94,40 @@
 					this.$message.error(res.data.msg);
 				}
 			});
+			
+			GetUserInfo({
+      token: localStorage.getItem("token"),
+    }).then((events) => {
+      if (events.status == 0) {
+        let userInfo = events.result;
+        localStorage.setItem("user", JSON.stringify(userInfo));
+        //获取商家会员信息
+        getVipInfo({
+          token: localStorage.getItem("token"),
+        }).then((vips) => {
+          if (vips.status == 0) {
+            that.vip_info = vips.result;
+          }
+        });
+      }
+    });
 		},
 		methods: {
 			// 类目切换
 			checkCategoy(item) {
+				if(JSON.stringify(this.vip_info)==='{}') return
 				this.category = item.id
 				this.getList()
 			},
 			// 综合切换
 			checkNav(item) {
+				if(JSON.stringify(this.vip_info)==='{}') return
 				this.order_field = item.filed
 				this.getList()
 			},
 			//秒杀切换
 			changLabel(item) {
+				if(JSON.stringify(this.vip_info)==='{}') return
 				this.type = item.id
 				this.getList()
 			},
@@ -124,12 +151,67 @@
 
 					if (res.data.status == 0) {
 						// this.goodList = res.data.result;
-						this.goodList = res.data.result.list;
+						this.goodList = this.goodList.concat(res.data.result.list)
 						this.total = res.data.result.count;
+						this.pageIndex += 1
 					} else {
 						this.$message.error(res.data.msg);
 					}
 				});
+			},
+			//节流
+			throttled:  function (func, wait, options) {
+					var self = this;
+					var timeout, context, args, result
+					var previous = 0
+					if (!options) options = {}
+
+					var later = function () {
+								previous = options.leading === false ? 0 : self.now()
+								timeout = null
+								result = func.apply(context, args)
+								if (!timeout) context = args = null
+					}
+
+						var throttled = function () {
+							var now = self.now()
+							if (!previous && options.leading === false) previous = now
+							var remaining = wait - (now - previous)
+							context = this
+							args = arguments
+							if (remaining <= 0 || remaining > wait) {
+										if (timeout) {
+											clearTimeout(timeout)
+											timeout = null
+									}
+									previous = now
+									result = func.apply(context, args)
+									if (!timeout) context = args = null
+							} else if (!timeout && options.trailing !== false) {
+									timeout = setTimeout(later, remaining)
+							}
+							return result;
+					}
+
+					throttled.cancel = function () {
+							clearTimeout(timeout)
+							previous = 0
+							timeout = context = args = null
+					}
+
+					return throttled;
+			},
+			//滚动时对滚动事件进行节流
+			scrollEvent(e) {
+					if(JSON.stringify(this.vip_info)==='{}') return
+				this.throttled(this.getList(e), 300)
+			},
+			handleScroll($event){
+				var el = document.getElementsByClassName('footer-div')[0]
+				var offset = el.getBoundingClientRect()
+				if(offset.top < window.innerHeight){
+					this.scrollEvent($event)
+				}
 			},
 			// 翻页
 			handleCurrentChange(val) {
@@ -138,7 +220,10 @@
 				// 获取商品列表
 				this.getList();
 			}
-		}
+		},
+		beforeDestroy(){
+			window.removeEventListener('scroll',this.handleScroll)
+		},
 	};
 </script>
 <style lang="less" scoped>

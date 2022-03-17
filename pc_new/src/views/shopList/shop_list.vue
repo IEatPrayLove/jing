@@ -204,19 +204,20 @@
 				}
 			});
 			this.getCategory();
-			window.addEventListener("scroll",(e)=>{
-				var el = document.getElementsByClassName('footer-div')[0]
-				var offset = el.getBoundingClientRect()
-				// console.log(offset)
-				if(offset.top < window.innerHeight){
-					this.scrollEvent(e)
-				}
-				
-			})
-			
-			// this.getList();
+			window.addEventListener("scroll",this.handleScroll)
+			this.getList();
+		},
+		beforeDestroy(){
+			window.removeEventListener('scroll',this.handleScroll)
 		},
 		methods: {
+			handleScroll($event){
+				var el = document.getElementsByClassName('footer-div')[0]
+				var offset = el.getBoundingClientRect()
+				if(offset.top < window.innerHeight){
+					this.scrollEvent($event)
+				}
+			},
 			getroundClass(index) {
 				return `bgimg` + Math.round(Math.random() * 3)
 			},

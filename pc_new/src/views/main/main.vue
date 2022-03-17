@@ -281,7 +281,8 @@
               <span>位实力商家</span>
             </el-col>
           </el-row>
-          <swiper class="top_w" :options="initData3">
+          <el-row class="w-100">
+            <swiper class="top_w" :options="initData3">
               <swiper-slide class="top_w_item" v-for="item in topShop" :key="item.id + item.name">
                   <div class="top_shop_container">
                     <img class="top_img" :src="item.logo" alt="">
@@ -322,6 +323,8 @@
                   </div>
               </swiper-slide>
             </swiper>
+          </el-row>
+          
         </div>
       </div>
        <div class="item-router" v-for="item in routerList" :key="item.id">
@@ -542,7 +545,15 @@ export default {
     this.getTopShop()
   },
   mounted() {
-    document.addEventListener('scroll',(e)=>{
+    document.addEventListener('scroll',this.handleScroll)
+    
+   
+  },
+  beforeDestroy(){
+    document.removeEventListener('scroll',this.handleScroll)
+  },
+  methods: {
+    handleScroll(){
       var tarEl = document.getElementsByClassName('home_new_banner')[0]
       const offset = tarEl.getBoundingClientRect();
       const offsetTop = offset.top;
@@ -552,11 +563,7 @@ export default {
       }else{
         this.home_new_banner_show = false
       }
-    })
-    
-   
-  },
-  methods: {
+    },
     toShopFn(index){
       this.$router.push(`/shop?uid=${this.topShop[index].id}`)
     },
@@ -816,9 +823,17 @@ export default {
     }
   }
 }
-.top_w{
+.w-100{
   width:1200px;
   margin-top: 40px;
+  position: relative;
+  height: 350px;
+}
+.top_w{
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: calc(-50vw + 600px);
 }
 .mt-10{
   margin-top:10px;

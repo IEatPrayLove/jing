@@ -47,7 +47,13 @@ export default {
       default: () => {
         return []
       }
-    }
+    },
+		vipInfo:{
+			type: Object,
+			default:()=>{
+				return {}
+			}
+		}
   },
   methods: {
     goGoods (item) {
