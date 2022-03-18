@@ -233,6 +233,7 @@
 				this.getList();
 			},
 			tapTab(index) {
+				this.tableData = []
 				this.pageIndex = 1;
 				this.pageSize = 20;
 				if (this.Index === index) {

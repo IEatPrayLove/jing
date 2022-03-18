@@ -115,19 +115,22 @@
 		methods: {
 			// 类目切换
 			checkCategoy(item) {
-				if(JSON.stringify(this.vip_info)==='{}') return
+				// if(JSON.stringify(this.vip_info)==='{}') return
+				this.goodList = []
 				this.category = item.id
 				this.getList()
 			},
 			// 综合切换
 			checkNav(item) {
-				if(JSON.stringify(this.vip_info)==='{}') return
+				// if(JSON.stringify(this.vip_info)==='{}') return
 				this.order_field = item.filed
+				this.goodList = []
 				this.getList()
 			},
 			//秒杀切换
 			changLabel(item) {
-				if(JSON.stringify(this.vip_info)==='{}') return
+				this.goodList = []
+				// if(JSON.stringify(this.vip_info)==='{}') return
 				this.type = item.id
 				this.getList()
 			},
@@ -203,7 +206,7 @@
 			},
 			//滚动时对滚动事件进行节流
 			scrollEvent(e) {
-					if(JSON.stringify(this.vip_info)==='{}') return
+				// if(JSON.stringify(this.vip_info)==='{}') return
 				this.throttled(this.getList(e), 300)
 			},
 			handleScroll($event){

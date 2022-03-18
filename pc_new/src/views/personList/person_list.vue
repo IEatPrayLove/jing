@@ -308,6 +308,7 @@
 				this.getList();
 			},
 			tapTab(index) {
+				if(this.vip_info.status !='1') return
 				this.pageIndex = 1;
 				this.pageSize = 20;
 				if (this.Index === index) {
@@ -396,6 +397,7 @@
 			},
 			changePage(val) {
 				//翻页功能
+				if(vip_info.status != '1') return
 				this.pageIndex = val;
 				document.body.scrollTop=document.documentElement.scrollTop=0
 				this.getList();

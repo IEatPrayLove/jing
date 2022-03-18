@@ -166,6 +166,8 @@ export default {
     };
   },
   mounted() {
+    const date = new Date()
+    
     this.$axios({
       url: "Allowance/getList",
       method: "get",
